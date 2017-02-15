@@ -79,27 +79,26 @@ public class main {
                 // print inventory menu
                 listProducts(productsList);
 
-                // ask user choice to add to cart????
+                // ask user choice to add to cart
                 System.out.println("Choose an item to add to cart: ");
                 int cartChoice = sc.nextInt();
                 sc.nextLine();
-                int holder = 1;
 
-                while (holder <= productsList.size()) {
-                    if (cartChoice == holder) {
+                // for loop goes through all items of inventory and adds based off index
+                for (int i = 1; i <= productsList.size(); ++i) {
+                    if (cartChoice == i) {
                         cartList.add(productsList.get(cartChoice - 1));
                         break;
                     }
-                    holder += 1;
                 }
+                // exits if user chooses last index(size of inventory plus 1)
                 if (cartChoice == productsList.size()+1) {
                     // should go back to main menu
                     System.out.println("going back to main menu");
                 }
-
-
                 System.out.println("");
             } else if (userChoice == 2) {
+                // show cart list, fix formatting
                 listProducts(cartList);
             } else {
                 // validator will make sure number is 3
