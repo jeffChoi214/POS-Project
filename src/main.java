@@ -112,7 +112,12 @@ public class main {
             } else if (userChoice == 2) {
                 // TODO: deal with removing from cart and checking out
                 // show cart list, fix formatting
+                // Customer customer1
+                // listProducts(customer1.getCartList());
                 listProducts(cartList);
+
+                // TODO: ask if user wants to check out or not
+                //       if they checkout, go into payment options
             } else {
                 // validator will make sure number is 3
                 System.out.println("Thanks for shopping!");
