@@ -1,13 +1,16 @@
 import java.math.BigDecimal;
 
 /*
- * Created by Jeff Choi on 2/15/17.
+ * POS Project 2/15/2017
+ * Jeff, Wei, Robert
  */
 public class Product {
     private String name;
     private String category;
     private String description;
     private BigDecimal price;
+
+    // TODO: maybe add quantity here
 
     public Product(String category, String description, String name, String price) {
         this.category = category;

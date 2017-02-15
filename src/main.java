@@ -68,14 +68,20 @@ public class main {
         // creating arraylist from text file
         ArrayList<Product> productsList = readFile();
         ArrayList<Product> cartList = new ArrayList<>();
+        final String admin = "Kamel";
         Scanner sc = new Scanner(System.in);
         int userChoice;
+
+        // TODO: get user name at beginning of loop
 
         while (true) {
             showMainMenu();
             userChoice = sc.nextInt();
             sc.nextLine();
             if (userChoice == 1) {
+                // TODO: Different menus, one for owner one for customer
+                // TODO: in owner menu, add or remove inventory
+
                 // print inventory menu
                 listProducts(productsList);
 
@@ -98,6 +104,7 @@ public class main {
                 }
                 System.out.println("");
             } else if (userChoice == 2) {
+                // TODO: deal with removing from cart and checking out
                 // show cart list, fix formatting
                 listProducts(cartList);
             } else {
