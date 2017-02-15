@@ -78,6 +78,10 @@ public class main {
             showMainMenu();
             userChoice = sc.nextInt();
             sc.nextLine();
+
+            //userchoice == 1 equals menu for owner
+            //userchoice == 2 equals menu for customer
+            //split up below if else statement
             if (userChoice == 1) {
                 // TODO: Different menus, one for owner one for customer
                 // TODO: in owner menu, add or remove inventory
