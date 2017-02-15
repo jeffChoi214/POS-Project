@@ -11,6 +11,8 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//testing git tthis should show up
+
 public class main {
     private static Path filePath = Paths.get("products.txt");
     private static File productsFile = filePath.toFile();
