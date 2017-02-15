@@ -11,7 +11,22 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//testing git tthis should show up
+/*
+    TODO: remove from inventory
+          add to inventory (admin menu)
+          ______
+          remove from cart (customer menu)
+          ___________
+          checkout options
+          ___________
+          customer: arraylist customers, deal w previous purchases,
+          _________
+          validations (its own class) -- int validation w range
+          ________
+          add discount codes (counters w howevermany shirts, if theres 3 shirts, random deals)
+          _______________
+          clean up code w methods
+ */
 
 public class main {
     private static Path filePath = Paths.get("products.txt");
