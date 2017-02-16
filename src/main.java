@@ -77,7 +77,7 @@ public class main {
         System.out.println("Choose an option: ");
         System.out.println("1. List Inventory");
         System.out.println("2. Show Cart");
-        System.out.println("3. Exit\n");
+        System.out.println("3. Exit\n"); 
     }
 
 
@@ -121,7 +121,7 @@ public class main {
                 // exits if user chooses last index(size of inventory plus 1)
                 if (cartChoice == productsList.size()+1) {
                     // should go back to main menu
-                    System.out.println("going back to main menu");
+                    System.out.println("Going back to main menu");
                 }
                 System.out.println("");
             } else if (userChoice == 2) {
