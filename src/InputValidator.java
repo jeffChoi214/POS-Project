@@ -63,8 +63,10 @@ public class InputValidator {
     public static String isValidCheckNumber(Scanner scan, String prompt) {
         System.out.println(prompt);
         String checkNumber = scan.nextLine();
-        if (checkNumber.length() < 4 || checkNumber.length() > 4)
+        while (checkNumber.length() < 4 || checkNumber.length() > 4){
             System.out.println("Invalid check number.");
+        checkNumber = scan.nextLine();
+    }
         return checkNumber;
     }
 

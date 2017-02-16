@@ -1,7 +1,10 @@
+import com.sun.xml.internal.bind.v2.TODO;
+
 import java.util.Scanner;
 
 public class CreditCardValidator {
-
+   static String lastFourDigits = "";
+    static String cardType = "";
 //use to take cc# as long and check as valid numbers input
     public static long getLong(Scanner sc, String prompt) {
         long l = 0;
@@ -21,10 +24,12 @@ public class CreditCardValidator {
 
 //checks digits length and prefixes for types of card
     public static String isValidCardNumber(Scanner sc, String prompt) {
-        String lastFourDigits = "";
-        String cardType = "";
+
         boolean condition = true;
         while (condition) {
+
+            //TODO: clean up credit card
+
             System.out.println(prompt);
             long cardNumber = getLong(sc, "");
             int length = String.valueOf(cardNumber).length();
@@ -34,12 +39,12 @@ public class CreditCardValidator {
             String digit2 = cardDigits.substring(0,2);
 
             // MasterCard have 16 digits length and prefix 51 to 55
-            // Visa have 13 or 16 digits length and prefix 4
+            // Visa have 13 or 16 digits length and prefix 41
             // Discover have 16 digits length prefix of 6011
             // Amex have 15 digits length and prefix of 34 or 37
 
-            if (digit1.equals("4") && ((length == 13) || (length == 16))) {
-                lastFourDigits = new Long(cardNumber).toString(12, 15);
+            if (digit1.equals("4") &&  (length == 16)) {
+                lastFourDigits = "" + cardDigits.charAt(12) + cardDigits.charAt(13) +cardDigits.charAt(14) + cardDigits.charAt(15);
                 condition = false;
                 cardType = "Visa";
             } else if ((digit2.compareTo("51") >= 0 && digit2.compareTo("55") <= 0) && (length == 16)) {
