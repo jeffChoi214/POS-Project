@@ -1,5 +1,3 @@
-import com.sun.xml.internal.bind.v2.TODO;
-
 import java.util.Scanner;
 
 public class CreditCardValidator {
@@ -48,15 +46,15 @@ public class CreditCardValidator {
                 condition = false;
                 cardType = "Visa";
             } else if ((digit2.compareTo("51") >= 0 && digit2.compareTo("55") <= 0) && (length == 16)) {
-                lastFourDigits = new Long(cardNumber).toString(12, 15);
+                lastFourDigits = "" + cardDigits.charAt(12) + cardDigits.charAt(13) +cardDigits.charAt(14) + cardDigits.charAt(15);
                 condition = false;
                 cardType = "Master Card";
             } else if (digit2.equals("60") && (length == 16)) {
-                lastFourDigits = new Long(cardNumber).toString(12, 15);
+                lastFourDigits = "" + cardDigits.charAt(12) + cardDigits.charAt(13) +cardDigits.charAt(14) + cardDigits.charAt(15);
                 condition = false;
                 cardType = "Discover";
             } else if ((digit2.equals("34") || digit2.equals("37")) && (length == 15)) {
-                lastFourDigits = new Long(cardNumber).toString(12, 14);
+                lastFourDigits = "" + cardDigits.charAt(11) + cardDigits.charAt(12) +cardDigits.charAt(13) + cardDigits.charAt(14);
                 condition = false;
                 cardType = "American Express";
             } else

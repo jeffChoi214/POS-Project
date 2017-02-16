@@ -56,12 +56,21 @@ public class main {
     }
 
     public static void listProducts(ArrayList<Product> productsList, boolean isCart) {
-        System.out.printf("%-5s %-10s %-15s %-15s %-15s", "", "Name", "Description", "Category", "Price");
+        if (!isCart) {
+            System.out.printf("%-5s %-10s %-15s %-15s %-15s", "", "Name", "Description", "Category", "Price");
+        }
+        else {
+            System.out.printf("%-5s %-10s %-15s %-15s %-15s %-15s %-15s", "", "Name", "Description", "Category", "Price", "Quantity", "Item Total");
+        }
+
         System.out.println("");
         for (int i = 0; i < productsList.size(); ++i) {
             System.out.printf("%-5s %-10s %-15s %-15s %-15s", (i + 1) + ". ",
                     productsList.get(i).getName(), productsList.get(i).getDescription(),
                     productsList.get(i).getCategory(), NumberFormat.getCurrencyInstance().format(productsList.get(i).getPrice()));
+            if (isCart == true){
+                System.out.printf(" %-15d $%-15s", productsList.get(i).getQuantity(), productsList.get(i).getPrice().multiply(new BigDecimal(productsList.get(i).getQuantity())));
+                    }
             System.out.println("");
         }
         if (isCart == false) {
@@ -130,10 +139,14 @@ public class main {
                 System.out.println("Choose an item to add to cart: ");
                 int cartChoice = sc.nextInt();
                 sc.nextLine();
+                System.out.println("Please enter quantity: ");
+                int userQuantity = sc.nextInt();
+                sc.nextLine();
 
                 // for loop goes through all items of inventory and adds based off index
                 for (int i = 1; i <= productsList.size(); ++i) {
                     if (cartChoice == i) {
+                        productsList.get(cartChoice -1).setQuantity(userQuantity);
                         cartList.add(productsList.get(cartChoice - 1));
                         break;
                     }

@@ -14,7 +14,9 @@ public class Payments {
 
         BigDecimal subTotal = new BigDecimal(0);
         for (int i = 0; i < cartList.size(); ++i) {
-            subTotal = subTotal.add(cartList.get(i).getPrice());
+
+            subTotal = subTotal.add(cartList.get(i).getPrice().multiply(new BigDecimal(cartList.get(i).getQuantity())));
+
         }
 
 
@@ -25,6 +27,8 @@ public class Payments {
 
 
     }
+
+
 
 
     public static void creditCard(ArrayList<Product> cartList) {
@@ -42,7 +46,8 @@ public class Payments {
     public static void cash(ArrayList<Product> cartList) {
         BigDecimal subTotal = new BigDecimal(0);
         for (int i = 0; i < cartList.size(); ++i) {
-            subTotal = subTotal.add(cartList.get(i).getPrice());
+            subTotal = subTotal.add(cartList.get(i).getPrice().multiply(new BigDecimal(cartList.get(i).getQuantity())));
+
         }
         //int customerAmount = InputValidator.getInt(sc, "Enter payment amount: " );
         BigDecimal customerAmount = new BigDecimal(InputValidator.getInt(sc, "Enter payment amount: "));

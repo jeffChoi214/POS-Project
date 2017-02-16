@@ -9,6 +9,7 @@ public class Product {
     private String category;
     private String description;
     private BigDecimal price;
+    private int quantity;
 
     // TODO: maybe add quantity here
 
@@ -36,13 +37,11 @@ public class Product {
         return this.price;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
 
-
-
-
-
-
-
-
-
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }
