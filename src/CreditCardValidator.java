@@ -64,9 +64,10 @@ public class CreditCardValidator {
     }
 
 //checks the date enter by format of MMyy and checks it against last date of previous month
-    public static boolean isValidCardExpiration(String s){
+    public static boolean isValidCardExpiration(String s, String prompt){
 
         java.text.DateFormat sdf = new java.text.SimpleDateFormat("MMyy");
+
 
         java.util.Calendar now = java.util.Calendar.getInstance();
         now.set(now.get(java.util.Calendar.YEAR), now.get(java.util.Calendar.MONTH), 0, 23, 59, 59);
@@ -96,19 +97,19 @@ public class CreditCardValidator {
         }
     }
 
-//Checking CVV by String length. any characters including letters will pass validation
-    public static void isValidCardCVV(Scanner scan, String prompt) {
-        boolean condition = true;
-        while (condition) {
-            System.out.println(prompt);
-            long cardNumber = getLong(scan, "");
-            int length = String.valueOf(cardNumber).length();
-            if (length == 3) {
-                condition = false;
-            } else
-                System.out.println("That is not a valid CVV number. Try again.");
-        }
-    }
+////Checking CVV by String length. any characters including letters will pass validation
+//    public static void isValidCardCVV(Scanner scan, String prompt) {
+//        boolean condition = true;
+//        while (condition) {
+//            System.out.println(prompt);
+//            long cardNumber = getLong(scan, "");
+//            int length = String.valueOf(cardNumber).length();
+//            if (length == 3) {
+//                condition = false;
+//            } else
+//                System.out.println("That is not a valid CVV number. Try again.");
+//        }
+//    }
 
 //Currently unable to differentiate 3 digits vs 4 digits CVV
     public static int isValidCVV(Scanner sc, String prompt)
@@ -117,10 +118,10 @@ public class CreditCardValidator {
         boolean condition = true;
         while (condition == true)
         {
-            System.out.print(prompt);
+            System.out.println(prompt);
             i = sc.nextInt();
             sc.nextLine();
-            if ( i <= 9999){
+            if ( (i <= 9999) || (i >= 100) ){
                 condition = false;
             } else {
                 System.out.println("That is not a valid CVV number. Try again. ");

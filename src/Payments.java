@@ -39,6 +39,8 @@ public class Payments {
         }
         System.out.println(total);
         CreditCardValidator.isValidCardNumber(sc, "Please enter your credit card number");
+//        CreditCardValidator.isValidCardExpiration(sc,"Please enter the card's Expiration date (MMyy): ");
+        CreditCardValidator.isValidCVV(sc, "Please enter the card's CVV: ");
 
 
     }

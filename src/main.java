@@ -13,10 +13,6 @@ import java.util.Scanner;
 //stupid change
 /*
     TODO: remove from inventory
-          add to inventory (admin menu)
-          ______
-          remove from cart (customer menu)
-          ___________
 
           customer: arraylist customers, deal w previous purchases,
           _________
@@ -80,19 +76,31 @@ public class main {
         System.out.println("");
     }
 
-    public static void showMainMenu() {
-        System.out.println("Welcome to the clothing store");
-        System.out.println("Choose an option: ");
-        System.out.println("1. List Inventory");
-        System.out.println("2. Show Cart");
-        System.out.println("3. Exit\n");
+    public static String showMainMenu(Scanner sc, boolean isFirst) {
+        String output;
+        if (isFirst) {
+            System.out.println("Welcome to the clothing store");
+            System.out.println("Please enter your name: ");
+            output = sc.nextLine();
+        }
+        else {
+            output = "Choose an option: \n" +
+                        "1. List Inventory\n" +
+                        "2. Show Cart\n" +
+                        "3. Remove Item from Cart\n" +
+                         "4. Exit\n";
+        }
+
+
+        return output;
     }
 
     public static int choosePaymentoptions(Scanner sc) {
         return InputValidator.getInt(sc, "1. Cash \n 2. Credit card \n 3. Check", 1, 3);
     }
 
-    public static void showReceipt(ArrayList<Product> cartList, int paymentOption) {
+    public static void showReceipt(ArrayList<Product> cartList, int paymentOption, Customer customer) {
+        System.out.println(customer.getName());
         System.out.println("Total Items : " + cartList.size());
         listProducts(cartList, true);
         System.out.println("========================================");
@@ -106,22 +114,25 @@ public class main {
             System.out.println("Paid with CHECK");
         }
 
-
+        System.out.println("You have made a total of " + customer.getNumHistory()+ " purchases at our store! Thank you for shopping with us! ");
     }
 
     public static void main(String[] args) {
         // creating arraylist from text file
         ArrayList<Product> productsList = readFile();
         ArrayList<Product> cartList = new ArrayList<>();
-        final String admin = "Kamel";
         Scanner sc = new Scanner(System.in);
 
         int userChoice;
 
         // TODO: get user name at beginning of loop
 
+
+
+        Customer customer = new Customer(showMainMenu(sc, true));
+
         while (true) {
-            showMainMenu();
+            System.out.println(showMainMenu(sc, false));
             userChoice = sc.nextInt();
             sc.nextLine();
 
@@ -169,8 +180,8 @@ public class main {
                 System.out.println("Would you like to checkout? (y/n)");
                 char userInput = sc.next().toLowerCase().charAt(0);
                 int paymentOption = 0;
-                if (userInput == 'y') {
-                    System.out.println("Please slecet a pyment method");
+                if (userInput == 'y' && (cartList.size()>0)) {
+                    System.out.println("Please slecet a payment method");
                     paymentOption = choosePaymentoptions(sc);
                     if (paymentOption == 1) {
                         System.out.println("Cash");
@@ -180,6 +191,7 @@ public class main {
                     } else if (paymentOption == 2) {
                         System.out.println("Credit Card");
                         CreditCardValidator.isValidCardNumber(sc, "Please enter your credit card number");
+                        CreditCardValidator.isValidCVV(sc, "Please enter the card's CVV: ");
 
                         // System.out.println("test " + CreditCardValidator.lastFourDigits);
 
@@ -187,9 +199,42 @@ public class main {
                         System.out.println("Check");
                         Payments.check(cartList);
                     }
-                    showReceipt(cartList, paymentOption);
+                    customer.addToPurchase(cartList);
+                    showReceipt(cartList, paymentOption, customer);
+
                     cartList = new ArrayList<>();
                 }
+                System.out.println("Your Shopping Cart is empty. Please add items to Cart!\n");
+            } else if (userChoice == 3) {
+                if (cartList.size() == 0) {
+                    System.out.println("Your Shopping Cart is empty. Please add items to Cart!\n");
+                    continue;
+                }
+                listProducts(cartList, true);
+                System.out.println("Which item would you like to remove from the Cart? ");
+                int userRemove = sc.nextInt();
+                sc.nextLine();
+
+                System.out.println("How many of item " + userRemove + " would you like to remove? ");
+                int quantityRemove = sc.nextInt();
+                sc.nextLine();
+
+                while (quantityRemove > cartList.get(userRemove-1).getQuantity()) {
+                    System.out.println("You do not have that many items in your cart!");
+                    quantityRemove = sc.nextInt();
+                }
+                if (quantityRemove == cartList.get(userRemove-1).getQuantity()) {
+                    cartList.remove(userRemove - 1);
+                }
+                else {
+                    cartList.get(userRemove-1).setQuantity(cartList.get(userRemove-1).getQuantity() - quantityRemove);
+                }
+
+
+                System.out.println("Updated Cart: ");
+                listProducts(cartList, true);
+                //TODO validation for menu and remove
+
             } else {
                 // validator will make sure number is 3
                 System.out.println("Thanks for shopping!");

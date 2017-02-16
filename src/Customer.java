@@ -5,20 +5,30 @@ import java.util.ArrayList;
  */
 public class Customer {
     private String name;
-    private ArrayList<Product> cartList;
     private ArrayList<ArrayList<Product>> previousPurchases;
 
     // constructor
-    public Customer() {
+
+    public Customer(String customerName) {
+        previousPurchases = new ArrayList<>();
+        name = customerName;
+
 
     }
 
+    public void addToPurchase (ArrayList<Product>historyList){
+
+        previousPurchases.add(historyList); //adds cart list to list of purchases
+
+    }
+
+    public int getNumHistory (){
+        return previousPurchases.size();
+    }
 
     public String getName() {
         return this.name;
     }
 
-    public ArrayList<Product> getCartList() {
-        return cartList;
-    }
+
 }
