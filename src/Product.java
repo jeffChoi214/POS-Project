@@ -11,7 +11,6 @@ public class Product {
     private BigDecimal price;
     private int quantity;
 
-    // TODO: maybe add quantity here
 
     public Product(String category, String description, String name, String price) {
         this.category = category;

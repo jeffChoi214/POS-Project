@@ -10,18 +10,8 @@ import java.nio.file.Paths;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
-//stupid change
-/*
-    TODO: remove from inventory
 
-          customer: arraylist customers, deal w previous purchases,
-          _________
-          validations (its own class) -- int validation w range
-          ________
-          add discount codes (counters w howevermany shirts, if theres 3 shirts, random deals)
-          _______________
-          clean up code w methods
- */
+//   TODO: if pay less then amount return to payment option
 
 public class main {
     private static Path filePath = Paths.get("products.txt");
@@ -125,23 +115,18 @@ public class main {
 
         int userChoice;
 
-        // TODO: get user name at beginning of loop
-
-
-
         Customer customer = new Customer(showMainMenu(sc, true));
 
         while (true) {
             System.out.println(showMainMenu(sc, false));
-            userChoice = sc.nextInt();
-            sc.nextLine();
+
+            userChoice = InputValidator.getInt(sc, "", 1, 4);
+
 
             //userchoice == 1 equals menu for owner
             //userchoice == 2 equals menu for customer
             //split up below if else statement
             if (userChoice == 1) {
-                // TODO: Different menus, one for owner one for customer
-                // TODO: in owner menu, add or remove inventory
 
                 // print inventory menu
                 listProducts(productsList, false);
@@ -170,10 +155,6 @@ public class main {
                 System.out.println("");
             } else if (userChoice == 2) {
 
-                // TODO: deal with removing from cart and checking out
-                // show cart list, fix formatting
-                // Customer customer1
-                // listProducts(customer1.getCartList());
                 listProducts(cartList, true);
 
 

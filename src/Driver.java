@@ -60,10 +60,7 @@ public class Driver {
     }
 
     public static ArrayList<Product> checkout(ArrayList<Product> cartList, Scanner sc) {
-        // TODO: deal with removing from cart and checking out
-        // show cart list, fix formatting
-        // Customer customer1
-        // listProducts(customer1.getCartList());
+
         listProducts(cartList, true);
 
 
