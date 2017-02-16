@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+//stupid change
 /*
     TODO: remove from inventory
           add to inventory (admin menu)
