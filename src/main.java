@@ -123,8 +123,7 @@ public class main {
             userChoice = InputValidator.getInt(sc, "", 1, 4);
 
 
-            //userchoice == 1 equals menu for owner
-            //userchoice == 2 equals menu for customer
+
             //split up below if else statement
             if (userChoice == 1) {
 
@@ -132,12 +131,23 @@ public class main {
                 listProducts(productsList, false);
 
                 // ask user choice to add to cart
+                int userQuantity = 0;
+
                 System.out.println("Choose an item to add to cart: ");
                 int cartChoice = sc.nextInt();
                 sc.nextLine();
-                System.out.println("Please enter quantity: ");
-                int userQuantity = sc.nextInt();
-                sc.nextLine();
+                while (cartChoice > productsList.size() +1 || cartChoice < productsList.size()-1) {
+                    System.out.println("Please choose a valid number!");
+                    cartChoice = sc.nextInt();
+                    sc.nextLine();
+                }
+                //send user back to main menu if choice = last choice in array
+                if (cartChoice != productsList.size()+1){
+                    System.out.println("Please enter quantity: ");
+                    userQuantity = sc.nextInt();
+                    sc.nextLine();
+                }
+
 
                 // for loop goes through all items of inventory and adds based off index
                 for (int i = 1; i <= productsList.size(); ++i) {
@@ -185,7 +195,9 @@ public class main {
 
                     cartList = new ArrayList<>();
                 }
+                else if ((userInput == 'y' && (cartList.size()<=0))){
                 System.out.println("Your Shopping Cart is empty. Please add items to Cart!\n");
+                }
             } else if (userChoice == 3) {
                 if (cartList.size() == 0) {
                     System.out.println("Your Shopping Cart is empty. Please add items to Cart!\n");
@@ -219,7 +231,6 @@ public class main {
             } else {
                 // validator will make sure number is 3
                 System.out.println("Thanks for shopping!");
-                System.out.println(cartList.size());
                 break;
             }
         }
