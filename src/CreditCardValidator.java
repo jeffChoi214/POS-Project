@@ -27,8 +27,6 @@ public class CreditCardValidator {
         boolean condition = true;
         while (condition) {
 
-            //TODO: clean up credit card
-
             System.out.println(prompt);
             long cardNumber = getLong(sc, "");
             int length = String.valueOf(cardNumber).length();
@@ -120,7 +118,7 @@ public class CreditCardValidator {
 //        }
 //    }
 
-    //Currently unable to differentiate 3 digits vs 4 digits CVV
+
     public static int isValidCVV(Scanner sc, String prompt) {
         int i = 0;
         int counter = 0;

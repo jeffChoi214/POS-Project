@@ -11,7 +11,6 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//   TODO: if pay less then amount return to payment option
 
 public class main {
     private static Path filePath = Paths.get("products.txt");
@@ -86,7 +85,7 @@ public class main {
     }
 
     public static int choosePaymentoptions(Scanner sc) {
-        return InputValidator.getInt(sc, "1. Cash \n 2. Credit card \n 3. Check", 1, 3);
+        return InputValidator.getInt(sc, "1. Cash \n2. Credit card \n3. Check", 1, 3);
     }
 
     public static void showReceipt(ArrayList<Product> cartList, int paymentOption, Customer customer) {
@@ -172,7 +171,7 @@ public class main {
                 char userInput = sc.next().toLowerCase().charAt(0);
                 int paymentOption = 0;
                 if (userInput == 'y' && (cartList.size()>0)) {
-                    System.out.println("Please slecet a payment method");
+                    System.out.println("Please select a payment method");
                     paymentOption = choosePaymentoptions(sc);
                     if (paymentOption == 1) {
                         System.out.println("Cash");
@@ -182,8 +181,8 @@ public class main {
                     } else if (paymentOption == 2) {
                         System.out.println("Credit Card");
                         CreditCardValidator.isValidCardNumber(sc, "Please enter your credit card number");
-                        CreditCardValidator.isValidCVV(sc, "Please enter the card's CVV: ");
                         CreditCardValidator.isValidCardExpiration(sc, "Please enter the card's expiration date: ");
+                        CreditCardValidator.isValidCVV(sc, "Please enter the card's CVV: ");
 
                         // System.out.println("test " + CreditCardValidator.lastFourDigits);
 
@@ -227,7 +226,6 @@ public class main {
 
                 System.out.println("Updated Cart: ");
                 listProducts(cartList, true);
-                //TODO validation for menu and remove
 
             } else {
                 // validator will make sure number is 3
