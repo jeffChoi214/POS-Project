@@ -65,7 +65,10 @@ public class CreditCardValidator {
     }
 
     //checks the date enter by format of MMyy and checks it against last date of previous month
-    public static boolean isValidCardExpiration(String s, String prompt) {
+    public static boolean isValidCardExpiration(Scanner sc, String prompt){
+
+        System.out.println(prompt);
+        String s = sc.nextLine();
 
         java.text.DateFormat sdf = new java.text.SimpleDateFormat("MMyy");
 
@@ -76,27 +79,32 @@ public class CreditCardValidator {
         try {
             java.util.Date exp = sdf.parse(s);
 
-            if (exp.before(now.getTime()))
-                return false;
+            while (exp.before(now.getTime())){
+                System.out.println("Your card has expired! Please enter a valid expiration date: ");
+                s = sc.nextLine();
+                exp = sdf.parse(s);
+
+            }
+
         } catch (java.text.ParseException e) {
-            return false;
+            System.out.println(e);
         }
         return true;
     }
 
-    //simple validation that checks by length of string. any 4 character will pass the validation.
-    public static void isValidCardDate(Scanner sc, String prompt) {
-        boolean condition = true;
-        while (condition) {
-            System.out.println(prompt);
-            long cardNumber = getLong(sc, "");
-            int length = String.valueOf(cardNumber).length();
-            if (length == 4) {
-                condition = false;
-            } else
-                System.out.println("That is not a valid expiration date. Try again.");
-        }
-    }
+//    //simple validation that checks by length of string. any 4 character will pass the validation.
+//    public static void isValidCardDate(Scanner sc, String prompt) {
+//        boolean condition = true;
+//        while (condition) {
+//            System.out.println(prompt);
+//            long cardNumber = getLong(sc, "");
+//            int length = String.valueOf(cardNumber).length();
+//            if (length == 4) {
+//                condition = false;
+//            } else
+//                System.out.println("That is not a valid expiration date. Try again.");
+//        }
+//    }
 
 ////Checking CVV by String length. any characters including letters will pass validation
 //    public static void isValidCardCVV(Scanner scan, String prompt) {
@@ -122,21 +130,15 @@ public class CreditCardValidator {
         System.out.println(prompt);
         i = sc.nextInt();
         sc.nextLine();
+        String checker = Integer.toString(i);
 
-        while (i > 0) {
-            i /= 10;
-            counter += 1;
-        }
-        while (counter != 3 && counter != 4) {
+        while (checker.length() !=  3 && checker.length() != 4) {
             System.out.println("That is not a valid CVV number. Try again. ");
             i = sc.nextInt();
             sc.nextLine();
-            counter = 0;
-            while (i > 0) {
-                i /= 10;
-                counter += 1;
-            }
-                if (counter == 3 || counter == 4) {
+            checker = Integer.toString(i);
+
+                if (checker.length() == 3 || checker.length() == 4) {
                     break;
 
                 }

@@ -136,7 +136,7 @@ public class main {
                 System.out.println("Choose an item to add to cart: ");
                 int cartChoice = sc.nextInt();
                 sc.nextLine();
-                while (cartChoice > productsList.size() +1 || cartChoice < productsList.size()-1) {
+                while (cartChoice > productsList.size() +1 || cartChoice < 1) {
                     System.out.println("Please choose a valid number!");
                     cartChoice = sc.nextInt();
                     sc.nextLine();
@@ -183,6 +183,7 @@ public class main {
                         System.out.println("Credit Card");
                         CreditCardValidator.isValidCardNumber(sc, "Please enter your credit card number");
                         CreditCardValidator.isValidCVV(sc, "Please enter the card's CVV: ");
+                        CreditCardValidator.isValidCardExpiration(sc, "Please enter the card's expiration date: ");
 
                         // System.out.println("test " + CreditCardValidator.lastFourDigits);
 
