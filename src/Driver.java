@@ -101,7 +101,7 @@ public class Driver {
         Payments.total(cartList);
         if (paymentOption == 1) {
             System.out.println("Paid in CASH.");
-            System.out.println("Your change is " + Payments.customerChange);
+            System.out.println("Your change is $" + String.format("%,.2f", Payments.customerChange));
         } else if (paymentOption == 2) {
             System.out.println("Paid with CREDIT CARD ending in " + CreditCardValidator.lastFourDigits);
         } else {
@@ -137,12 +137,16 @@ public class Driver {
                     sc.nextLine();
                 }
 
-
                 // for loop goes through all items of inventory and adds based off index
                 for (int i = 1; i <= productsList.size(); ++i) {
                     if (cartChoice == i) {
-                        productsList.get(cartChoice - 1).setQuantity(userQuantity);
-                        cartList.add(productsList.get(cartChoice - 1));
+                        if (productsList.get(cartChoice - 1).getQuantity() != 0) {
+                            productsList.get(cartChoice - 1).addQuantity(userQuantity);
+                        }
+                        else {
+                            productsList.get(cartChoice - 1).setQuantity(userQuantity);
+                            cartList.add(productsList.get(cartChoice - 1));
+                        }
                         break;
                     }
                 }
@@ -159,6 +163,10 @@ public class Driver {
 
                 System.out.println("Would you like to checkout? (y/n)");
                 char userInput = sc.next().toLowerCase().charAt(0);
+                while (userInput != 'y' && userInput != 'n') {
+                    System.out.println("Please enter y or n!");
+                    userInput = sc.next().toLowerCase().charAt(0);
+                }
                 int paymentOption = 0;
                 if (userInput == 'y' && (cartList.size() > 0)) {
                     System.out.println("Please select a payment method");

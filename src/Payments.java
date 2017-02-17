@@ -20,9 +20,8 @@ public class Payments {
         tax = tax.setScale(2, BigDecimal.ROUND_HALF_UP);
         BigDecimal total = subTotal.multiply(tax);
         total = total.setScale(2, BigDecimal.ROUND_HALF_UP);
-        System.out.println("Subtotal: " + subTotal);
-        System.out.println("Total: " + total);
-
+        System.out.println("Subtotal: $" + String.format("%,.2f", subTotal));
+        System.out.println("Total: $" + String.format("%,.2f", total));
     }
 
 
