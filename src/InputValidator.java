@@ -71,22 +71,23 @@ public class InputValidator {
         }
         return i;
     }
-    public static String isValidRoutingNumber (Scanner sc, String prompt) {
-        System.out.println(prompt);
-        String routingNumber = sc.nextLine();
-        if(routingNumber.length()<9||routingNumber.length()>9)
-            System.out.println("Invalid routing number.");
-        return routingNumber;
-    }
 
     public static String isValidCheckNumber(Scanner scan, String prompt) {
         System.out.println(prompt);
         String checkNumber = scan.nextLine();
         while (checkNumber.length() < 4 || checkNumber.length() > 4){
             System.out.println("Invalid check number.");
-        checkNumber = scan.nextLine();
-    }
+            checkNumber = scan.nextLine();
+        }
         return checkNumber;
+    }
+
+    public static String isValidRoutingNumber (Scanner sc, String prompt) {
+        System.out.println(prompt);
+        String routingNumber = sc.nextLine();
+        if(routingNumber.length()<9||routingNumber.length()>9)
+            System.out.println("Invalid routing number.");
+        return routingNumber;
     }
 
     public static String isValidAccountNumber(Scanner scan, String prompt) {

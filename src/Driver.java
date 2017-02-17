@@ -65,7 +65,7 @@ public class Driver {
     public static String showMainMenu(Scanner sc, boolean isFirst) {
         String output;
         if (isFirst) {
-            System.out.println("Welcome to the clothing store");
+            System.out.println("Welcome to the clothing store\n");
             System.out.println("Please enter your name: ");
             output = sc.nextLine();
         } else {
@@ -88,18 +88,18 @@ public class Driver {
         System.out.println(customer.getName());
         System.out.println("Total Items : " + cartList.size());
         Driver.listProducts(cartList, true);
-        System.out.println("========================================");
+        System.out.println("=============================================================================================");
         Payments.total(cartList);
         if (paymentOption == 1) {
             System.out.println("Paid in CASH.");
             System.out.println("Your change is " + Payments.customerChange);
         } else if (paymentOption == 2) {
-            System.out.println("Paid with CREDIT CARD");
+            System.out.println("Paid with CREDIT CARD ending in " + CreditCardValidator.lastFourDigits);
         } else {
             System.out.println("Paid with CHECK");
         }
 
-        System.out.println("You have made a total of " + customer.getNumHistory() + " purchases at our store! Thank you for shopping with us! ");
+        System.out.println("\nYou have made a total of " + customer.getNumHistory() + " purchases at our store! Thank you for shopping with us! \n");
     }
 
     public static void runProgram(ArrayList<Product> productsList, ArrayList<Product> cartList, Scanner sc, Customer customer) {
@@ -161,11 +161,7 @@ public class Driver {
 
                     } else if (paymentOption == 2) {
                         System.out.println("Credit Card");
-                        CreditCardValidator.isValidCardNumber(sc, "Please enter your credit card number");
-                        CreditCardValidator.isValidCardExpiration(sc, "Please enter the card's expiration date: ");
-                        CreditCardValidator.isValidCVV(sc, "Please enter the card's CVV: ");
-
-                        // System.out.println("test " + CreditCardValidator.lastFourDigits);
+                        Payments.creditCard(cartList);
 
                     } else {
                         System.out.println("Check");
@@ -194,7 +190,7 @@ public class Driver {
                     sc.nextLine();
                 }
 
-                System.out.println("How many of item " + userRemove + " would you like to remove? ");
+                System.out.println("How many of item " + userRemove + " would you like to remove from cart? ");
                 int quantityRemove = sc.nextInt();
                 sc.nextLine();
 

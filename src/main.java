@@ -3,14 +3,13 @@
  * Jeff, Wei, Robert
 */
 
-import java.io.*;
-import java.math.BigDecimal;
+import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//TODO bug when adding duplicate items, it replaces original entry with new quantity and adds the quanity to cart as new entry
 
 public class main {
     private static Path filePath = Paths.get("products.txt");
