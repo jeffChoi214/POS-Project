@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 //TODO bug when adding duplicate items, it replaces original entry with new quantity and adds the quanity to cart as new entry
+//TODO update total item in receipt to reflect quantity multiples
+//TODO match context percision issue: losing calculation percision in higher values. if set percision too high we lose lower value accuracy
 
 public class main {
     private static Path filePath = Paths.get("products.txt");

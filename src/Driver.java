@@ -86,7 +86,16 @@ public class Driver {
 
     public static void showReceipt(ArrayList<Product> cartList, int paymentOption, Customer customer) {
         System.out.println(customer.getName());
-        System.out.println("Total Items : " + cartList.size());
+        int totalQuantity = 0;
+
+        for (int i = 0; i < cartList.size(); ++i) {
+            totalQuantity = totalQuantity + cartList.get(i).getQuantity();
+
+        }
+
+        System.out.println("Total Items : " + totalQuantity);
+
+
         Driver.listProducts(cartList, true);
         System.out.println("=============================================================================================");
         Payments.total(cartList);
