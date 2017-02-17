@@ -17,7 +17,9 @@ public class Payments {
         }
 
         BigDecimal tax = new BigDecimal(1.06);
-        BigDecimal total = subTotal.multiply(tax, new MathContext(4));
+        tax = tax.setScale(2, BigDecimal.ROUND_HALF_UP);
+        BigDecimal total = subTotal.multiply(tax);
+        total = total.setScale(2, BigDecimal.ROUND_HALF_UP);
         System.out.println("Subtotal: " + subTotal);
         System.out.println("Total: " + total);
 
@@ -29,6 +31,7 @@ public class Payments {
         BigDecimal total = new BigDecimal(0);
         for (int i = 0; i < cartList.size(); ++i) {
             total = total.add(cartList.get(i).getPrice());
+            total = total.setScale(2, BigDecimal.ROUND_HALF_UP);
         }
 //        System.out.println(total);
         CreditCardValidator.isValidCardNumber(sc, "Please enter your credit card number");
@@ -41,11 +44,15 @@ public class Payments {
         BigDecimal subTotal = new BigDecimal(0);
         for (int i = 0; i < cartList.size(); ++i) {
             subTotal = subTotal.add(cartList.get(i).getPrice().multiply(new BigDecimal(cartList.get(i).getQuantity())));
+            subTotal = subTotal.setScale(2, BigDecimal.ROUND_HALF_UP);
 
         }
-        BigDecimal customerAmount = new BigDecimal(InputValidator.getDouble(sc, "Enter payment amount: "), new MathContext(4));
-        BigDecimal tax = new BigDecimal(1.06, new MathContext(4));
-        BigDecimal total = subTotal.multiply(tax, new MathContext(4));
+        BigDecimal customerAmount = new BigDecimal(InputValidator.getDouble(sc, "Enter payment amount: "));
+        customerAmount = customerAmount.setScale(2, BigDecimal.ROUND_HALF_UP);
+        BigDecimal tax = new BigDecimal(1.06);
+        tax = tax.setScale(2, BigDecimal.ROUND_HALF_UP);
+        BigDecimal total = subTotal.multiply(tax);
+        total = total.setScale(2, BigDecimal.ROUND_HALF_UP);
         int checker = total.compareTo(customerAmount);
 
 //        System.out.println(checker);
@@ -56,9 +63,10 @@ public class Payments {
         while (checker == 1) {
             System.out.println("That's not enough money!!!");
             customerAmount = new BigDecimal(InputValidator.getDouble(sc, "Enter payment amount: "));
+            customerAmount = customerAmount.setScale(2, BigDecimal.ROUND_HALF_UP);
             checker = total.compareTo(customerAmount);
         }
-        customerChange = customerAmount.subtract(total, new MathContext(4));
+        customerChange = customerAmount.subtract(total).setScale(2, BigDecimal.ROUND_HALF_UP);
     }
 
     public static void check(ArrayList<Product> cartList) {
