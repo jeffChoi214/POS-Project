@@ -22,7 +22,7 @@ public class Payments {
 
         BigDecimal tax = new BigDecimal(1.06);
         BigDecimal total = subTotal.multiply(tax, new MathContext(4));
-        System.out.println("Subtotal : " + subTotal);
+        System.out.println("Subtotal: " + subTotal);
         System.out.println(" Total: " + total);
 
 
@@ -52,9 +52,20 @@ public class Payments {
 
         }
         //int customerAmount = InputValidator.getInt(sc, "Enter payment amount: " );
-        BigDecimal customerAmount = new BigDecimal(InputValidator.getInt(sc, "Enter payment amount: "));
-        BigDecimal tax = new BigDecimal(1.06);
+        BigDecimal customerAmount = new BigDecimal(InputValidator.getDouble(sc, "Enter payment amount: "), new MathContext(4));
+        BigDecimal tax = new BigDecimal(1.06, new MathContext(4));
         BigDecimal total = subTotal.multiply(tax, new MathContext(4));
+        int checker = total.compareTo(customerAmount);
+
+//        System.out.println(checker);
+//        System.out.println(customerAmount);
+//        System.out.println(tax);
+//        System.out.println(total);
+        while(checker == 1){
+            System.out.println("That's not enough money!!!");
+            customerAmount = new BigDecimal(InputValidator.getDouble(sc, "Enter payment amount: "));
+            checker = total.compareTo(customerAmount);
+        }
         customerChange = customerAmount.subtract(total, new MathContext(4));
     }
 

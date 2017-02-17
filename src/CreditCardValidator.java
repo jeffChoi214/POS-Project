@@ -124,28 +124,30 @@ public class CreditCardValidator {
     public static int isValidCVV(Scanner sc, String prompt) {
         int i = 0;
         int counter = 0;
-
-
+        String userInput = "";
+        boolean invalidCVV = false;
 
         System.out.println(prompt);
-        i = sc.nextInt();
-        sc.nextLine();
-        String checker = Integer.toString(i);
+        //i = sc.nextInt();
+        userInput = sc.nextLine();
 
-        while (checker.length() !=  3 && checker.length() != 4) {
-            System.out.println("That is not a valid CVV number. Try again. ");
-            i = sc.nextInt();
-            sc.nextLine();
-            checker = Integer.toString(i);
-
-                if (checker.length() == 3 || checker.length() == 4) {
-                    break;
-
-                }
-
+        for (int j = 0; j < userInput.length(); ++j) {
+            if (!Character.isDigit(userInput.charAt(j))) {
+                invalidCVV = true;
             }
+        }
 
-
+        while (invalidCVV) {
+            System.out.println("Please enter a valid CVV");
+            userInput = sc.nextLine();
+            invalidCVV = false;
+            for (int j = 0; j < userInput.length(); ++j) {
+                if (!Character.isDigit(userInput.charAt(j))) {
+                    invalidCVV = true;
+                }
+            }
+        }
+        i = Integer.parseInt(userInput);
         return i;
     }
 

@@ -51,7 +51,26 @@ public class InputValidator {
         }
         return i;
     }
-
+    public static double getDouble(Scanner sc, String prompt)
+    {
+        double i = 0;
+        boolean isValid = false;
+        while (isValid == false)
+        {
+            System.out.print(prompt);
+            if (sc.hasNextDouble())
+            {
+                i = sc.nextDouble();
+                isValid = true;
+            }
+            else
+            {
+                System.out.println("Error! Invalid double value. Try again.");
+            }
+            sc.nextLine();  //clear buffer
+        }
+        return i;
+    }
     public static String isValidRoutingNumber (Scanner sc, String prompt) {
         System.out.println(prompt);
         String routingNumber = sc.nextLine();
