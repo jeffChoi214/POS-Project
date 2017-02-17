@@ -98,7 +98,7 @@ public class Driver {
 
         Driver.listProducts(cartList, true);
         System.out.println("=============================================================================================");
-        Payments.total(cartList);
+        Payments.cash(cartList, false);
         if (paymentOption == 1) {
             System.out.println("Paid in CASH.");
             System.out.println("Your change is $" + String.format("%,.2f", Payments.customerChange));
@@ -173,8 +173,7 @@ public class Driver {
                     paymentOption = Driver.choosePaymentoptions(sc);
                     if (paymentOption == 1) {
                         System.out.println("Cash");
-                        Payments.total(cartList);
-                        Payments.cash(cartList);
+                        Payments.cash(cartList, true);
 
                     } else if (paymentOption == 2) {
                         System.out.println("Credit Card");
